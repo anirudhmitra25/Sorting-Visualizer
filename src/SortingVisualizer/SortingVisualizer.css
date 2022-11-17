@@ -4,11 +4,27 @@
   
 }
 
+.quickSortButton{
+    background-color: white; /* Green */
+    border: none;
+    color:gray;
+    padding: 15px 32px;
+    font-family: sans-serif;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+
+
+}
+
 .button{
 
     background-color: white; /* Green */
     border: none;
-    color: dimgray;
+    color:gray;
     padding: 15px 32px;
     font-family: sans-serif;
     font-size: 20px;

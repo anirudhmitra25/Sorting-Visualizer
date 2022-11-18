@@ -21,12 +21,11 @@
 }
 
 .button{
-
-    background-color: white; /* Green */
+    background-color: transparent; 
     border: none;
-    color:gray;
+    color: #00FF00;
     padding: 15px 32px;
-    font-family: sans-serif;
+    font-family: monospace;
     font-size: 20px;
     text-align: center;
     text-decoration: none;
@@ -39,21 +38,23 @@
     color: violet;
 }
 
+.main-container{
+    text-align: center;
+}
+
 
 .arraycontainer{
-
-    position: relative;
-    top: 30px;
-
+    text-align: center;
+    padding: 20px;
+    width: 90vw;
+    height: 82vh;
+    margin: auto;
 }
 
 .arraybar{
-
-    width: 4px;
-    background-color: aqua;
+    background-color: #00FF00;
     display: inline-block;
     margin: 1px;
-
 }
 
 #time{
@@ -65,6 +66,11 @@
 }
 
 .slider{
-    position: relative;
-   width: 100px;
+    width: 100px;
+}
+.footer{
+
+    display: flex;
+    justify-content: center;
+
 }

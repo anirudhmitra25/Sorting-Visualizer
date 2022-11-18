@@ -6,12 +6,13 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "bootstrap": "^5.2.2",
     "react": "^16.13.1",
+    "react-bootstrap": "^2.6.0",
     "react-dom": "^16.13.1",
     "react-rangeslider": "^2.2.0",
     "react-scripts": "3.4.1"
   },
-  "homepage": "https://anirudhmitra25.github.io/Sorting-Visualizer",
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",
@@ -36,8 +37,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^2.2.0"
+    "gh-pages": "^2.2.0",
+    "react-router-dom": "^6.4.3"
   }
-
-
 }

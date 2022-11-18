@@ -1,0 +1,36 @@
+h1{
+    color: #00FF00;
+    font-family: monospace;
+    font-size: 80px;
+    margin-left: 3rem;
+    padding-left: 2.5rem;
+}
+
+.start-button{
+    width: max-content;
+    /* position: relative;
+    right: 0; */
+    background-color: transparent;
+    color: #00FF00;
+    font-family: monospace;
+    font-weight: bold;
+    border-color: #00FF00;
+    border-width: 2px;
+    font-size: x-large;
+    margin-top: 2rem;
+}
+.start-button:hover{
+    background-color: #00FF00;
+    color: white;
+}
+.description{
+    color: #00FF00;
+    font-family: monospace;
+    font-size: large;
+}
+.container{
+    margin-top: 3rem;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+}

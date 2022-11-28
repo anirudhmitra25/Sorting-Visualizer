@@ -1,7 +1,6 @@
 .buttoncontainer{
-
-    position: relative;
-  
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .quickSortButton{
@@ -40,21 +39,29 @@
 
 .main-container{
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vw;
 }
 
 
 .arraycontainer{
     text-align: center;
-    padding: 20px;
-    width: 90vw;
-    height: 82vh;
-    margin: auto;
+    /* padding: 20px; */
+    padding-top: 2px;
+    width: 92vw;
+    height: 85vh;
+    /* border: #00FF00 solid;
+    border-width: 3px; */
 }
 
 .arraybar{
     background-color: #00FF00;
     display: inline-block;
-    margin: 1px;
+    margin-left: 0.5px;
+    margin-right: 0.5px;
 }
 
 #time{
@@ -69,8 +76,32 @@
     width: 100px;
 }
 .footer{
-
+    position: relative;
+    bottom: 0;
     display: flex;
     justify-content: center;
+    /* margin-top: 2%; */
 
+}
+
+@media (max-width: 500px){
+    .footer{
+       /* flex-direction: column; */
+    }
+}
+
+@media (max-width:400px) {
+    .buttoncontainer{
+        display: flex;
+        flex-direction: column;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+    .arraycontainer{
+        text-align: center;
+        /* padding: 20px; */
+        padding-top: 9px;
+        width: 92vw;
+        height: 85vh;
+    }
 }

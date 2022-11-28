@@ -22,19 +22,41 @@ export default class SortingVisualizer extends React.Component {
     this.state = {
       stop: false,
       array: [],
-      sliderValue: 200,
-      running:false,
+      sliderValue: 100,
+      running: false,
+      arrayContainerWidth: 0,
+      arrayContainerHeight: 0,
     };
   }
 
   componentDidMount() {
     this.resetArray();
+    window.addEventListener("resize", this.updateDimensions);
   }
 
-  resetArray() {
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
+  }
+
+  updateDimensions = () => {
+    this.setState({
+      arrayContainerWidth:
+        document.getElementsByClassName("arraycontainer")[0].clientWidth,
+      arrayContainerHeight:
+        document.getElementsByClassName("arraycontainer")[0].clientHeight,
+    });
+  };
+
+  resetArray(value) {
     const array = [];
-    for (let i = 0; i < this.state.sliderValue; i++) {
-      array.push(randomNumfromInterval(5, 550));
+    if (value) {
+      for (let i = 0; i < value; i++) {
+        array.push(randomNumfromInterval(5, 550));
+      }
+    } else {
+      for (let i = 0; i < this.state.sliderValue; i++) {
+        array.push(randomNumfromInterval(5, 550));
+      }
     }
     this.setState({ array });
   }
@@ -43,6 +65,7 @@ export default class SortingVisualizer extends React.Component {
     const animations = mergeSort(this.state.array);
     var temp;
     var temp2;
+    const totalTime = animations.length * (500 / this.state.sliderValue);
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.getElementsByClassName("arraybar");
       const isColorChange = i % 3 !== 2;
@@ -54,20 +77,25 @@ export default class SortingVisualizer extends React.Component {
         temp = setTimeout(() => {
           barOneStyle.backgroundColor = color;
           barTwoStyle.backgroundColor = color;
-        }, i * 500/this.state.sliderValue);
+        }, (i * 500) / this.state.sliderValue);
       } else {
         temp2 = setTimeout(() => {
           const [barOneIdx, newHeight] = animations[i];
           const barOneStyle = arrayBars[barOneIdx].style;
           barOneStyle.height = `${newHeight}px`;
-        }, i * 500/this.state.sliderValue);
+        }, (i * 500) / this.state.sliderValue);
       }
-      // this.setState({running:false});
     }
+    setTimeout(() => {
+      this.setState({
+        running: false,
+      });
+    }, totalTime);
   }
 
   QuickSort() {
     const myanimations = Qsort(this.state.array);
+    const totalTime = myanimations.length * (500 / this.state.sliderValue);
     for (let i = 0; i < myanimations.length; i++) {
       const arraybars = document.getElementsByClassName("arraybar");
       const colorChange = i % 6 === 0 || i % 6 === 1 ? 0 : 1;
@@ -85,7 +113,7 @@ export default class SortingVisualizer extends React.Component {
         setTimeout(() => {
           bar1Style.backgroundColor = color;
           bar2Style.backgroundColor = color;
-        },i * 500/this.state.sliderValue);
+        }, (i * 500) / this.state.sliderValue);
       } else {
         const [a, b] = myanimations[i];
 
@@ -98,15 +126,21 @@ export default class SortingVisualizer extends React.Component {
               bar1Style.height = `${b}px`;
             },
 
-            i * 500/this.state.sliderValue
+            (i * 500) / this.state.sliderValue
           );
         }
       }
     }
+    setTimeout(() => {
+      this.setState({
+        running: false,
+      });
+    }, totalTime);
   }
 
   BubbleSort() {
     const myanimations = BSort(this.state.array);
+    const totalTime = myanimations.length * (500 / this.state.sliderValue);
     for (let i = 0; i < myanimations.length; i++) {
       const arraybars = document.getElementsByClassName("arraybar");
       const colorChange = i % 4 === 0 || i % 4 === 1 ? 0 : 1;
@@ -119,7 +153,7 @@ export default class SortingVisualizer extends React.Component {
         setTimeout(() => {
           bar1Style.backgroundColor = color;
           bar2Style.backgroundColor = color;
-        }, i * 500/this.state.sliderValue);
+        }, (i * 500) / this.state.sliderValue);
       } else {
         const [a, b] = myanimations[i];
 
@@ -132,17 +166,23 @@ export default class SortingVisualizer extends React.Component {
               bar1Style.height = `${b}px`;
             },
 
-            i * 500/this.state.sliderValue
+            (i * 500) / this.state.sliderValue
           );
         }
       }
     }
+    setTimeout(() => {
+      this.setState({
+        running: false,
+      });
+    }, totalTime);
 
     //console.log(myanimations);
   }
 
   InsertionSort() {
     const [animations, sortedArray] = insertionSort(this.state.array);
+    const totalTime = animations.length * (500 / this.state.sliderValue);
 
     for (let i = 0; i < animations.length; i++) {
       const isColorChange =
@@ -158,42 +198,42 @@ export default class SortingVisualizer extends React.Component {
         setTimeout(() => {
           barOneStyle.backgroundColor = color;
           barTwoStyle.backgroundColor = color;
-        }, i * 500/this.state.sliderValue);
+        }, (i * 500) / this.state.sliderValue);
       } else {
         const [temp, barIndex, newHeight] = animations[i];
         const barStyle = arrayBars[barIndex].style;
         setTimeout(() => {
           barStyle.height = `${newHeight}px`;
-        }, i * 500/this.state.sliderValue);
+        }, (i * 500) / this.state.sliderValue);
       }
     }
+    setTimeout(() => {
+      this.setState({
+        running: false,
+      });
+    }, totalTime);
   }
 
   StopFunc() {
     this.setState({ stop: true });
   }
 
-  handleChangeStart = () => {
-  
-  };
+  handleChangeStart = () => {};
 
   handleChange = (value) => {
-    this.setState({
-      sliderValue: value,
-    });
-
-    if (value < 200 && value > 0) {
-      this.resetArray();
+    if (value >= 2 || value <= 99) {
+      this.updateDimensions();
+      this.setState({
+        sliderValue: value,
+      });
+      this.resetArray(value);
     }
   };
 
-  handleChangeComplete = () => {
-  
-  };
+  handleChangeComplete = () => {};
 
   render() {
-    const { array, sliderValue,running } = this.state;
-
+    const { array, sliderValue, running } = this.state;
 
     return (
       <div className="main-container">
@@ -208,67 +248,86 @@ export default class SortingVisualizer extends React.Component {
                   document.getElementsByClassName("arraycontainer")[0]
                     .clientWidth /
                     sliderValue -
-                  document.getElementsByClassName("arraycontainer")[0]
-                    .clientWidth /
-                    sliderValue /
-                    2
+                  3
                 }px`,
               }}
             ></div>
           ))}
         </div>
         <section className="footer">
-          <div className="slider">
-            {
-              !this.state.running&&
+          {/* <div className="slider">
+            {console.log("SHOWN value",this.state.sliderValue)}
+          </div> */}
+          <div class="buttoncontainer">
+            {!this.state.running && (
               <Slider
-                min={0}
-                max={200}
-                value={sliderValue}
+                min={2}
+                max={100}
+                value={this.state.sliderValue}
                 onChangeStart={this.handleChangeStart}
                 onChange={this.handleChange}
                 onChangeComplete={this.handleChangeComplete}
               />
-            }
-          </div>
-          <div class="buttoncontainer">
-            <button class="button" disabled={this.state.running} onClick={() => this.resetArray()}>
+            )}
+            <button
+              class="button"
+              disabled={this.state.running}
+              onClick={() => this.resetArray()}
+            >
               Generate new array
             </button>
-            <button class="button" disabled={this.state.running} onClick={() => {
-              // this.setState({ running: true })
-              this.MergeSort()
-              // this.setState({ running: false })
-              }}>
+            <button
+              class="button"
+              disabled={this.state.running}
+              onClick={() => {
+                this.setState({ running: true }, () => {
+                  this.MergeSort();
+                });
+              }}
+            >
               Merge Sort
             </button>
-            <button class="button"  disabled={this.state.running} onClick={() => {
-              // this.setState({ running: true })
-              this.BubbleSort()
-              // this.setState({ running: false })
-            }
-              
-              }>
+            <button
+              class="button"
+              disabled={this.state.running}
+              onClick={() => {
+                this.setState({ running: true }, () => {
+                  this.BubbleSort();
+                });
+              }}
+            >
               Bubble Sort
             </button>
             <button
               class="button"
               disabled={this.state.running}
               onClick={() => {
-                // this.setState({ running: true })
-                this.QuickSort();
-                // this.setState({ running: false })
+                this.setState({ running: true }, () => {
+                  this.QuickSort();
+                });
               }}
             >
               Quick Sort
             </button>
-            <button class="button"  disabled={this.state.running} onClick={() => {
-              // this.setState({ running: true })
-              this.InsertionSort()
-              // this.setState({ running: false })
-              }}>
+            <button
+              class="button"
+              disabled={this.state.running}
+              onClick={() => {
+                this.setState({ running: true }, () => {
+                  this.InsertionSort();
+                });
+              }}
+            >
               Insertion Sort
             </button>
+            {/* <button
+              class="button"
+              onClick={() => {
+                this.StopFunc();
+              }}
+            >
+              stop
+            </button> */}
           </div>
         </section>
       </div>

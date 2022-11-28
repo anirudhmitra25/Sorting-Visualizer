@@ -4,6 +4,10 @@ h1{
     font-size: 80px;
     margin-left: 3rem;
     padding-left: 2.5rem;
+    word-wrap: break-word;
+}
+.header-container{
+    width: 90vw;
 }
 
 .start-button{
@@ -33,4 +37,15 @@ h1{
     padding: 5rem;
     display: flex;
     flex-direction: column;
+}
+
+@media (max-width:450px) {
+  h1{
+    color: #00FF00;
+    font-family: monospace;
+    font-size: 40px;
+    margin-left: 3rem;
+    padding-left: 2.5rem;
+    word-wrap: break-word;
+  }
 }

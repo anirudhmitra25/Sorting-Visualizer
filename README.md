@@ -1,7 +1,5 @@
 <h4 align="center">A cool sorting visualizer where you can edit the algorithms. <a href="https://sorting-visualizer-anirudh.netlify.app/">Demo here</a></h4>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:

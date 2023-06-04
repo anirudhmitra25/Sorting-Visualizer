@@ -1,4 +1,4 @@
-<h4 align="center">A cool sorting visualizer where you can edit the algorithms. <a href="https://sorting-visualizer-anirudh.netlify.app/">Demo here</a></h4>
+<h4 align="center"><a href="https://sorting-visualizer-anirudh.netlify.app/">Demo here</a></h4>
 
 ## Available Scripts
 

@@ -1,3 +1,12 @@
+**_Sorting.Visualizer is a web app for visualizing a bunch of different sorting algorithms Like_**
+1. Bubble Sort.
+2. Insertion Sort.
+3. Merge Sort.
+4. Quick Sort.
+
+_With the functionality of_ ⏳(**_Processing Speed Control_**)  _and_   📏(**_Array Size Control_**)
+
+
 <h4 align="center"><a href="https://sorting-visualizer-anirudh.netlify.app/">Demo here</a></h4>
 
 ## Available Scripts

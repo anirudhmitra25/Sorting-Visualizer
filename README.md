@@ -2,6 +2,8 @@
 
 Welcome to Sorting Visualizer, a web application built using React.js that allows you to visually experience different sorting algorithms. 
 
+![Sorting Visualizer Demo](public/demo.gif)
+
 ## Tech Stack
 - React.js
 
